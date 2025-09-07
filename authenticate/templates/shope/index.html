@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="author" content="sazzad">
+  <meta name="description" content="The Official Website fot saz coffee shope">
+  <title>sazzad coffee house</title>
+  <link rel="icon" href="{% static 'img/fevicon.jpeg' %}" type="image/x-icon">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+  <header style="text-align: center;">
+    <img src="{% static 'img/logo.png' %}" 
+    alt="Sazzad coffee hours logo" 
+    class="logo">
+    <h1>Welcome To The Sazzad Coffee House</h1>
+    <h5 style="font-style: italic; color: gray; margin-top: 0px margin-bottom:1%">Where Every Cup Feels Like Home</h5>
+    <nav>
+      <ul>
+        <li>
+          <a href="{% url 'about' %}">About</a>
+          <a href="{% url 'hours' %}">Hours</a> 
+          <a href="{% url 'contact' %}">Contact</a>
+          <a href="{% url 'price' %}">Price</a> 
+        </li>
+      </ul>
+    </nav>
+    <figure>
+      <img src="{% static 'img/many coffee.jpeg' %}" 
+      alt="Our coffee items" 
+      title="we love coffee" width="400" height="267">
+      <figcaption>
+        we love coffee
+      </figcaption>
+    </figure>
+  </header>
+  <hr>
+  <main>
+    <h2>Sazzad Coffee House</h2>
+    <p>At <abbr title="Sazzad Coffee House">SCH</abbr>, we believe that great coffee is more than just a drink – it's an experience. Nestled in a cozy
+    corner, our coffee house offers a warm and inviting space where people can relax, work, or catch up with friends.
+    
+    We serve freshly brewed coffee, handcrafted espresso, and a variety of delicious snacks – all made with quality
+    ingredients and a passion for perfection. Whether you’re in the mood for a classic cappuccino, a rich latte, or a
+    refreshing cold brew, we’ve got something to satisfy every coffee lover’s taste.</p>
+    <aside>
+      <h3><abbr title="Sazzad Coffee House">SCH</abbr> Trivia</h3>
+      <details>
+        <summary>
+          ☕ Did You Know?
+        </summary>
+        <p>
+          Sazzad Coffee House serves over 300 cups of coffee every week, and our most popular drink is the Signature Sazzad Latte
+          – a secret recipe loved by first-timers and regulars alike!
+        </p>
+      </details>
+    </aside>
+  </main>
+  <hr>
+  <footer>
+    <p style="text-align: center;">
+      copyright &copy; The Sazzad Coffee House
+    </p>
+  </footer>
+</body>
+</html>

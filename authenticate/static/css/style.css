@@ -1,0 +1,10 @@
+nav a { margin-right: 20px;
+  text-decoration: none;
+  color: black;
+}
+.logo {
+  width: 100px;
+  height: auto;
+  float: left;
+  margin: 0px;
+}

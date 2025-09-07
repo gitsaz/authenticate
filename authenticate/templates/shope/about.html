@@ -1,0 +1,97 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="author" content="sazzad">
+  <meta name="description" content="The Official Website fot saz coffee shope">
+  <title>About</title>
+  <link rel="icon" href="{% static 'img/fevicon.jpeg' %}" type="image/x-icon">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+  <header style="text-align: center;">
+    <img src="{% static 'img/logo.png' %}" 
+    alt="Sazzad coffee hours logo" class="logo">
+    <h1>About Us</h1>
+    <nav>
+      <ul>
+        <li>
+          <a href="{% url 'home' %}">Home</a>
+          <a href="{% url 'hours' %}">Hours</a> 
+          <a href="{% url 'contact' %}">Contact</a>
+          <a href="{% url 'price' %}">Price</a> 
+        </li>
+      </ul>
+    </nav>
+    <figure>
+      <img src="{% static 'img/many coffee.jpeg' %}" alt="Our coffee items" title="we love coffee" width="400" height="267">
+      <figcaption>
+        we love coffee
+      </figcaption>
+    </figure>
+  </header>
+  <hr>
+  <main>
+    <h2><abbr title="Sazzad Coffee House">SCH</abbr></h2>
+    <p>
+      At Sazzad Coffee House, we’re passionate about delivering more than just coffee — we offer an experience. We serve a
+      wide variety of coffee, from rich espressos and creamy lattes to refreshing cold brews and flavored blends. Whether you
+      prefer strong, sweet, hot, or iced — there’s something here for everyone.we’ve got the perfect cup waiting for you. <br>
+      Come visit us and discover the perfect blend of flavor, comfort, and community – only at Sazzad Coffee House.
+    </p>
+    <aside>
+      <h3>Coffee Menu</h3>
+      <details>
+        <summary>
+         You Will Get This items at <abbr title="Sazzad Coffee House">SCH</abbr></h3>
+        </summary>
+        <p>
+          <h4>☕ Hot Coffee</h4>
+          <ul>
+            <li>Espresso (Single/Double)</li>
+            <li>Americano</li>
+            <li>Latte</li>
+            <li>Cappuccino</li>
+            <li>Macchiato</li>
+            <li>Mocha</li>
+            <li>Flat White</li>
+          </ul>
+          <h4>☕ Cold Coffee</h4>
+          <ul>
+            <li>Iced Americano</li>
+            <li>Cold Brew</li>
+            <li>Iced Latte</li>
+            <li>Coffee Frappe</li>
+            <li>Iced Caramel Macchiato</li>
+          </ul>
+          <h4>☕ Specialty Drinks</h4>
+          <ul>
+            <li>Sazzad Signature Latte (House Special)</li>
+            <li>Spiced Cinnamon Coffee</li>
+            <li>Affogato (Espresso with Ice Cream)</li>
+          </ul>
+          <h4>☕ Non-Coffee Options</h4>
+          <ul>
+            <li>Hot Chocolate</li>
+            <li>Masala Tea</li>
+            <li>ced Lemon Tea</li>
+            <li>Green Tea</li>
+            <li>Milkshakes (Chocolate, Vanilla, Strawberry)</li>
+          </ul>
+        </p>
+      </details>
+    </aside>
+  </main>
+  <a href="#">Back to Top</a>
+  <hr>
+  <footer>
+    <p style="text-align: center;">
+      copyright &copy; The Sazzad Coffee House
+    </p>
+  </footer>
+</body>
+
+</html>

@@ -1,0 +1,268 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="author" content="sazzad">
+  <meta name="description" content="Items Price for saz coffee shope">
+  <title>Hours</title>
+  <link rel="icon" href="{% static 'img/fevicon.jpeg' %}" type="image/x-icon">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+  <header style="text-align: center;">
+    <img src="{% static 'img/logo.png' %}"
+    alt="Sazzad coffee hours logo" class="logo">
+      
+    <h1>Items Price</h1>
+    <nav>
+      <ul>
+        <li>
+          <a href="{% url 'home' %}">Home</a>
+          <a href="{% url 'about' %}">About</a> 
+          <a href="{% url 'contact' %}">Contact</a>
+          <a href="{% url 'hours' %}">Hours</a> 
+        </li>
+      </ul>
+    </nav>
+    <figure>
+      <img src="{% static 'img/blackcoffee.jpeg' %}" alt="Capacinno" title="we love coffee" width="400" height="267">
+      <figcaption>
+        we love coffee
+      </figcaption>
+    </figure>
+  </header>
+  <hr>
+  <main>
+    <h2 style="text-align: center;"> <u>Price Chart</u></h2>
+    <table border="1" cellpadding="6" cellspacing="1" style="width: 60%; text-align: center; margin: 0 auto;">
+      <thead>
+        <tr>
+          <th colspan="4"><strong>Hot Coffee</strong></th>
+        </tr>
+        <tr>
+          <th>Sl</th>
+          <th>Item</th>
+          <th>Quantity</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td rowspan="2">1</td>
+          <td rowspan="2">Espresso</td>
+          <td>1 cup</td>
+          <td>120 BDT</td>
+        </tr>
+        <tr>
+          <td>2 cup</td>
+          <td>200 BDT</td>
+        </tr>
+        <tr>
+          <td rowspan="2">2</td>
+          <td rowspan="2">Americano</td>
+          <td>1 cup</td>
+          <td>160 BDT</td>
+        </tr>
+        <tr>
+          <td>2 cup</td>
+          <td>290 BDT</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Latte</td>
+          <td>1 cup</td>
+          <td>130 BDT</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>Cappuccino</td>
+          <td>1 cup</td>
+          <td>150 BDT</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>Macchiato</td>
+          <td>1 cup</td>
+          <td>140 BDT</td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td>Mocha</td>
+          <td>1 cup</td>
+          <td>120 BDT</td>
+        </tr>
+        <tr>
+          <td rowspan="2">7</td>
+          <td rowspan="2">Flat White</td>
+          <td>1 cup</td>
+          <td>120 BDT</td>
+        </tr>
+        <tr>
+          <td>2 cup</td>
+          <td>210 BDT</td>
+        </tr>
+        <!-- Add more hot coffee items as needed -->
+      </tbody>
+    </table>
+    <br>
+    
+    <table border="1"cellpadding="6" cellspacing="1" style="width: 60%; text-align: center; margin: 0 auto;">
+      <thead>
+        <tr>
+          <th colspan="4"><strong>Cold Coffee</strong></th>
+        </tr>
+        <tr>
+          <th>Sl</th>
+          <th>Item</th>
+          <th>Quantity</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td rowspan="2">1</td>
+          <td rowspan="2">Iced Americano</td>
+          <td>1 glass</td>
+          <td>150 BDT</td>
+        </tr>
+        <tr>
+          <td>2 glass</td>
+          <td>280 BDT</td>
+        </tr>
+        <tr>
+          <td rowspan="2">2</td>
+          <td rowspan="2">Cold Brew</td>
+          <td>1 glass</td>
+          <td>160 BDT</td>
+        </tr>
+        <tr>
+          <td>2 glass</td>
+          <td>300 BDT</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Iced Latte</td>
+          <td>1 glass</td>
+          <td>130 BDT</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>Coffee Frappe</td>
+          <td>1 glass</td>
+          <td>140 BDT</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>Iced Caramel Macchiato</td>
+          <td>160 glass</td>
+          <td> BDT</td>
+        </tr>
+        <!-- Add more cold coffee items as needed -->
+      </tbody>
+    </table>
+    <br>
+
+    <table border="1" cellpadding="6" cellspacing="1" style="width: 60%; text-align: center; margin: 0 auto;">
+      <thead>
+        <tr>
+          <th colspan="4"><strong>Specialty Drinks</strong></th>
+        </tr>
+        <tr>
+          <th>Sl</th>
+          <th>Item</th>
+          <th>Quantity</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Sazzad Signature Latte (House Special)</td>
+          <td>1 cup</td>
+          <td>220 BDT</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Spiced Cinnamon Coffee</td>
+          <td>1 cup</td>
+          <td>180 BDT</td>
+        </tr>
+        <tr>
+          <td rowspan="2">3</td>
+          <td rowspan="2">Affogato (Espresso with Ice Cream)</td>
+          <td>1 cup</td>
+          <td>160 BDT</td>
+        </tr>
+        <tr>
+          <td>2 cup</td>
+          <td>290 BDT</td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+
+    <table border="1" cellpadding="6" cellspacing="1" style="width: 60%; text-align: center; margin: 0 auto;">
+      <thead>
+        <tr>
+          <th colspan="4"><strong>Non-Coffee Options</strong></th>
+        </tr>
+        <tr>
+          <th>Sl</th>
+          <th>Item</th>
+          <th>Quantity</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td rowspan="2">1</td>
+          <td rowspan="2">Hot Chocolate</td>
+          <td>1 cup</td>
+          <td>140 BDT</td>
+        </tr>
+        <tr>
+          <td>2 cup</td>
+          <td>240 BDT</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Green Tea</td>
+          <td>1 cup</td>
+          <td>30 BDT</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>ced Lemon Tea</td>
+          <td>1 cup</td>
+          <td>30 BDT</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>Masala Tea</td>
+          <td>1 cup</td>
+          <td>40 BDT</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>Milkshakes</td>
+          <td>1 glass</td>
+          <td>60 BDT</td>
+        </tr>
+        <!-- Add more cold coffee items as needed -->
+      </tbody>
+    </table>
+    
+    <h5 style="text-align: center;">Alwase we are waiting for you!</h5>
+  </main>
+  <hr>
+  <footer>
+    <p style="text-align: center;">
+      copyright &copy; The Sazzad Coffee House
+    </p>
+  </footer>
+</body>
+
+</html>
