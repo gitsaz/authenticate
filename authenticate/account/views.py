@@ -1,6 +1,8 @@
 from django.views import generic
 from django.contrib import messages
 from django.shortcuts import render, redirect
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import never_cache
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse_lazy
@@ -8,26 +10,25 @@ from django.urls import reverse_lazy
 from .forms import(
     LoginForm
 )
+from .minixs import(
+    LogoutRequiredMinix
+)
 
-
+@method_decorator(never_cache, name='dispatch')
 class Index(LoginRequiredMixin,generic.TemplateView):
     login_url = reverse_lazy("login")
     template_name = "shope/index.html"
-    
-    
 class About(generic.TemplateView):
     template_name = "shope/about.html"
-
 class Contact(generic.TemplateView):
     template_name = "shope/contact.html"
-    
 class Price(generic.TemplateView):
     template_name = "shope/price.html"
-
 class Hours(generic.TemplateView):
     template_name = "shope/hours.html"    
 
-class Login(generic.View):
+@method_decorator(never_cache, name='dispatch')
+class Login(LogoutRequiredMinix, generic.View):
     def get(self, *args, **kwargs):
         form = LoginForm()
         context = {
@@ -50,3 +51,9 @@ class Login(generic.View):
                 messages.warning(self.request, "Wrong Credentials")
                 return redirect('login')
         return render(self.request, 'account/login.html', {"form":form})
+    
+    
+class Logout(generic.View):
+    def get(self, *args, **kwargs):
+        logout(self.request)
+        return redirect('login')

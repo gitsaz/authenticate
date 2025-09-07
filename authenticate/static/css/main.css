@@ -19,3 +19,9 @@
     border-right-color: black !important;
     border-bottom-color: black !important;
 }
+
+.errorlist {
+    padding-left: 0px;
+    color: red;
+    list-style: none;
+}

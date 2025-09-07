@@ -11,6 +11,16 @@
 </head>
 <body>
   <header style="text-align: center;">
+     <!-- 3-dot menu -->
+    <div class="dropdown" tabindex="0">
+      <button class="dropbtn">⋮</button>
+      <div class="dropdown-content">
+        <a href="#">🔑 Change Password</a>
+        <a href="{% url 'logout' %}">🚪 Logout</a>
+      </div>
+    </div>
+
+
     <img src="{% static 'img/logo.png' %}" 
     alt="Sazzad coffee hours logo" 
     class="logo">

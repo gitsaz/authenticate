@@ -8,3 +8,85 @@ nav a { margin-right: 20px;
   float: left;
   margin: 0px;
 }
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Mobile first */
+body {
+  font-size: 16px;
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+  body {
+    font-size: 18px;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  body {
+    font-size: 20px;
+  }
+}
+/* Dropdown CSS */
+    .dropdown {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      display: inline-block;
+    }
+
+    /* 3-dot button design */
+    .dropbtn {
+      background: white;
+      border: 2px solid #333;
+      border-radius: 10%;
+      width: 40px;
+      height: 40px;
+      font-size: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      line-height: 36px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    /* Hover effect */
+    .dropbtn:hover {
+      background: #f0f0f0;
+      border-color: #555;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      right: 0;
+      margin-top: 8px;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      min-width: 160px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .dropdown-content a {
+      display: block;
+      padding: 10px 15px;
+      text-decoration: none;
+      color: #333;
+      transition: background 0.2s;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #f5f5f5;
+    }
+
+    /* Focus-within → click করলে open হবে */
+    .dropdown:focus-within .dropdown-content {
+      display: block;
+    }
