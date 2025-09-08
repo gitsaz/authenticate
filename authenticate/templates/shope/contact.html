@@ -14,7 +14,7 @@
 <body>
   <header style="text-align: center;">
     <img src="{% static 'img/logo.png' %}"
-    alt="Sazzad coffee hours logo" class="logo">
+    alt="coffee house logo" class="logo">
     <h1>Contact Us</h1>
     
     <nav>
@@ -38,22 +38,30 @@
   <main>
     <h2>Our Contact Form</h2>
     <section>
-      <form action="" method="GET">
+      <form method="POST" novalidate>
         <legend>Send Us A Message</legend>
-        <p>
-          <label for="name">Name:</label>
-          <input type="text" name="name" id="name" placeholder="Your Name" required>
-        </p>
-        <p>
-          <label for="email">Email:</label>
-          <input type="email" name="email" id="email" placeholder="Your Email" required>
-          </p>
-        <p>
-          <label for="message">Your Message:</label><br>
-          <textarea name="messege" id="messege" placeholder="Type Your Message Here"></textarea required>
-        </p>
-        <button type="submit">Send</button>
-        <button type="reset">Reset</button>
+        {% csrf_token %}
+        <div>
+          {% include 'account/message.html' %}
+        </div>
+        <div>
+          <label for="{{ form.name.id_for_label }}">Name</label>
+          {{ form.name }}
+          {{ form.name.errors }}
+        </div>
+
+        <div>
+          <label for="{{ form.email.id_for_label }}">Email</label>
+          {{ form.email }}
+          {{ form.email.errors }}
+        </div>
+        <div>
+          <label for="{{ form.message.id_for_label }}">Message</label>
+          {{ form.message }}
+          {{ form.message.errors }}
+        </div>
+          <button type="submit">Send</button>
+          <button type="reset">Reset</button>
       </form>
     </section>
     <hr>

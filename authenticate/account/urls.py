@@ -7,7 +7,8 @@ from .views  import(
     Price,
     Hours,
     Login,
-    Logout
+    Logout,
+    Registration,
 )
 
 urlpatterns = [
@@ -17,7 +18,8 @@ urlpatterns = [
     path('price/', Price.as_view(), name='price'),
     path('hours/', Hours.as_view(), name='hours'),
     path('login/', Login.as_view(), name='login'),
-    path('logout/', Logout.as_view(), name='logout')
+    path('logout/', Logout.as_view(), name='logout'),
+    path('registration/', Registration.as_view(), name='registration')
     
 ]
 

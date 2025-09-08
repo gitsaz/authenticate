@@ -1,4 +1,11 @@
+import re
 from django import forms
+from django.contrib.auth import get_user_model
+from .models import(
+    Message
+)
+
+User = get_user_model()
 
 
 class LoginForm(forms.Form):
@@ -8,6 +15,7 @@ class LoginForm(forms.Form):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         #ei loop tar kaj holo form control newa. mane form er username password field er style er control newa. ei same kaj tai niche kora holo.
+        
         # for field in self.fields:
         #     self.fields[field].widget.attrs.update({"class":"form-control"})
         
@@ -19,3 +27,76 @@ class LoginForm(forms.Form):
         max_length=150,
         widget= forms.PasswordInput(attrs={"class":"form-control"})
     )
+
+
+class UserRegistrationForm(forms.ModelForm):
+    
+    password = forms.CharField(
+        max_length=150,
+        widget= forms.PasswordInput(attrs={"class":"form-control"})
+    )
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        
+    class Meta:
+        model = User
+        fields = ('username', 'email', 'password')
+        widgets = {
+            "username": forms.TextInput(attrs={"class":"form-control"}),
+            "email": forms.EmailInput(attrs={"class":"form-control"}),
+        }
+     
+    #1.duplicate username check    
+    def clean_username(self):
+        username = self.cleaned_data.get('username')
+        if User.objects.filter(username__iexact=username).exists():
+            raise forms.ValidationError("This username already taken")
+        return username
+        
+    #2.duplicate email check
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        if User.objects.filter(email__iexact=email).exists():
+            raise forms.ValidationError("This email already taken")
+        return email
+        
+    def clean_password(self, *args, **kwargs):
+        password = self.cleaned_data.get('password')
+        password2 = self.data.get('password2')
+        
+        #1.password match check
+        if password and password2:
+            if password != password2:
+                raise forms.ValidationError("Password do not match")
+        #2. password length check   
+        if password and len(password) < 8:
+            raise forms.ValidationError("Password must be at least 8 characters long")
+        #3.password must contain at lest one special character
+        if password and not re.search(r"[!@#$%^&*(),.?\":{}|<>]", password):
+            raise forms.ValidationError("Password must contain at least one special character (!@#$%^&*)")
+        return password
+        
+    def save(self, commit = True ,*args, **kwargs):
+        user = self.instance
+        user.set_password(self.cleaned_data.get('password'))
+        
+        if commit:
+            user.save()
+        return user
+    
+class MessageForm(forms.ModelForm):
+    class Meta:
+        model = Message
+        fields = ('name', 'email', 'message')
+        widgets = {
+            "name": forms.TextInput(attrs={"class": "form-control"}),
+            "email": forms.EmailInput(attrs={"class": "form-control"}),
+            "message": forms.Textarea(attrs={"class": "form-control"}),
+        }
+    def clean_email(self):
+            email = self.cleaned_data.get('email')
+            if not User.objects.filter(email=email).exists():
+                raise forms.ValidationError("This email is not registered")
+            return email
+        

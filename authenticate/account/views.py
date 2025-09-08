@@ -8,7 +8,9 @@ from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse_lazy
 
 from .forms import(
-    LoginForm
+    LoginForm,
+    UserRegistrationForm,
+    MessageForm
 )
 from .minixs import(
     LogoutRequiredMinix
@@ -57,3 +59,25 @@ class Logout(generic.View):
     def get(self, *args, **kwargs):
         logout(self.request)
         return redirect('login')
+    
+@method_decorator(never_cache, name='dispatch')
+class Registration(LogoutRequiredMinix, generic.CreateView):
+    template_name = 'account/register.html'
+    form_class =UserRegistrationForm
+    success_url = reverse_lazy('login')
+    
+    def form_valid(self, form):
+        messages.success(self.request, "Registration Successful !")
+        return super().form_valid(form)
+    
+    
+class Contact(generic.FormView):
+    template_name = "shope/contact.html"
+    form_class = MessageForm
+    success_url = reverse_lazy('contact')   # submit হওয়ার পর আবার contact পেজে redirect করবে
+
+    def form_valid(self, form):
+        form.save()  # ডাটাবেজে message সেভ হবে
+        messages.success(self.request, "Your message has been sent !")
+        return super().form_valid(form)
+        
