@@ -8,6 +8,8 @@
   <meta name="description" content="Contact for saz coffee shope">
   <title>Contact</title>
   <link rel="icon" href="{% static 'img/fevicon.jpeg' %}" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.rtl.min.css" integrity="sha384-CfCrinSRH2IR6a4e6fy2q6ioOX7O6Mtm1L9vRvFZ1trBncWmMePhzvafv7oIcWiW" crossorigin="anonymous">
+
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 
@@ -15,6 +17,7 @@
   <header style="text-align: center;">
     <img src="{% static 'img/logo.png' %}"
     alt="coffee house logo" class="logo">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
     <h1>Contact Us</h1>
     
     <nav>
@@ -38,31 +41,32 @@
   <main>
     <h2>Our Contact Form</h2>
     <section>
-      <form method="POST" novalidate>
+      <div class="row-centered py-4 justify-content-center align-items-center">
+        <form method="POST" novalidate>
         <legend>Send Us A Message</legend>
         {% csrf_token %}
         <div>
           {% include 'account/message.html' %}
         </div>
-        <div>
-          <label for="{{ form.name.id_for_label }}">Name</label>
+        <div class="form-group my-2">
+          <label for="name">Name</label>
           {{ form.name }}
           {{ form.name.errors }}
         </div>
-
-        <div>
-          <label for="{{ form.email.id_for_label }}">Email</label>
+        <div class="form-group my-2">
+          <label for="email">Email</label>
           {{ form.email }}
           {{ form.email.errors }}
         </div>
-        <div>
-          <label for="{{ form.message.id_for_label }}">Message</label>
+        <div class="form-group my-2">
+          <label for="textbox" placeholder="Write your message here.">Message</label>
           {{ form.message }}
           {{ form.message.errors }}
         </div>
-          <button type="submit">Send</button>
-          <button type="reset">Reset</button>
+          <button type="submit" class="btn btn-dark">Send</button>
+          <button type="reset" class="btn btn-dark">Reset</button>
       </form>
+      </div>
     </section>
     <hr>
     <section>

@@ -17,6 +17,11 @@ img {
     color: red;
     list-style: none;
 }
+.centered {
+    width: 100% !important;
+    height: 80vh !important;
+    overflow: hidden !important;
+}
 
 /* Mobile first */
 body {

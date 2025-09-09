@@ -66,9 +66,8 @@ class UserRegistrationForm(forms.ModelForm):
         password2 = self.data.get('password2')
         
         #1.password match check
-        if password and password2:
-            if password != password2:
-                raise forms.ValidationError("Password do not match")
+        if password != password2:
+            raise forms.ValidationError("Password do not match")
         #2. password length check   
         if password and len(password) < 8:
             raise forms.ValidationError("Password must be at least 8 characters long")
