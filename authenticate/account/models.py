@@ -15,8 +15,8 @@ class User(AbstractBaseUser,PermissionsMixin):
         max_length= 150,
         unique= True
     )
-    is_staff = models.BooleanField(default=True)
-    is_superuser = models.BooleanField(default=True)
+    is_staff = models.BooleanField(default=False)
+    is_superuser = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     date_joined = models.DateTimeField(auto_now_add=True)
     objects = UserManager()
