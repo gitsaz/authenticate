@@ -99,3 +99,45 @@ class MessageForm(forms.ModelForm):
                 raise forms.ValidationError("This email is not registered")
             return email
         
+        
+class ChangePasswordForm(forms.Form):
+    
+    current_password =forms.CharField(
+        max_length=150,
+        widget=forms.PasswordInput(attrs={"class":"form-control"})
+    )
+    new_password1 =forms.CharField(
+        max_length=150,
+        widget=forms.PasswordInput(attrs={"class":"form-control"})
+    )
+    new_password2 =forms.CharField(
+        max_length=150,
+        widget=forms.PasswordInput(attrs={"class":"form-control"})
+    )
+    def __init__(self, user, *args, **kwargs):
+        self.user = user
+        super().__init__(*args, **kwargs)
+        
+    def clean_current_password(self, *args, **kwargs):
+        current_password = self.cleaned_data.get('current_password')
+        
+        if not self.user.check_password(current_password):
+            raise forms.ValidationError('Incorrect |Password')    
+    
+    def clean_new_password1(self, *args, **kwargs):
+        new_password1 = self.cleaned_data.get('new_password1')
+        new_password2 = self.data.get('new_password2')
+        
+        
+        if new_password1 != new_password2:
+            raise forms.ValidationError('Password do not match')
+        #1. password length check   
+        if new_password1 and len(new_password1) < 8:
+            raise forms.ValidationError("Password must be at least 8 characters long")
+        #2.password must contain at lest one special character
+        if new_password1 and not re.search(r"[!@#$%^&*(),.?\":{}|<>]", new_password1):
+            raise forms.ValidationError("Password must contain at least one special character (!@#$%^&*)")
+        
+        return new_password1
+    
+    

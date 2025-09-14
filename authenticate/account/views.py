@@ -10,7 +10,8 @@ from django.urls import reverse_lazy
 from .forms import(
     LoginForm,
     UserRegistrationForm,
-    MessageForm
+    MessageForm,
+    ChangePasswordForm
 )
 from .minixs import(
     LogoutRequiredMinix
@@ -81,3 +82,23 @@ class Contact(generic.FormView):
         messages.success(self.request, "Your message has been sent !")
         return super().form_valid(form)
         
+        
+# Change Password
+@method_decorator(never_cache, name='dispatch')
+class ChangePassword(LoginRequiredMixin, generic.FormView):
+    template_name = 'account/change_password.html'
+    form_class =  ChangePasswordForm
+    login_url = reverse_lazy('login')
+    success_url = reverse_lazy('login')
+    
+    def get_form_kwargs(self):
+        context = super().get_form_kwargs()
+        context['user'] = self.request.user
+        return context
+    
+    def form_valid(self, form):
+        user = self.request.user
+        user.set_password(form.cleaned_data.get('new_password1'))
+        user.save()
+        messages.success(self.request, 'Password Change Successfully')
+        return super().form_valid(form)

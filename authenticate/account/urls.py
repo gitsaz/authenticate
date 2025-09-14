@@ -9,6 +9,7 @@ from .views  import(
     Login,
     Logout,
     Registration,
+    ChangePassword,
 )
 
 urlpatterns = [
@@ -19,7 +20,8 @@ urlpatterns = [
     path('hours/', Hours.as_view(), name='hours'),
     path('login/', Login.as_view(), name='login'),
     path('logout/', Logout.as_view(), name='logout'),
-    path('registration/', Registration.as_view(), name='registration')
+    path('registration/', Registration.as_view(), name='registration'),
+    path('change_password/', ChangePassword.as_view(), name="change_password")
     
 ]
 
