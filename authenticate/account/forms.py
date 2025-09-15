@@ -1,6 +1,11 @@
 import re
 from django import forms
 from django.contrib.auth import get_user_model
+from django.contrib.auth.forms import(
+    PasswordResetForm
+    
+)
+    
 from .models import(
     Message
 )
@@ -141,3 +146,58 @@ class ChangePasswordForm(forms.Form):
         return new_password1
     
     
+class ResetPasswordForm(PasswordResetForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        
+        # add bootstrap class to all fields
+        for field in self.fields:
+            self.fields[field].widget.attrs.update({"class":"form-control"})
+            
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        if not User.objects.filter(email__iexact=email).exists():
+            raise forms.ValidationError("The email is not registered")
+        return email
+
+            
+    def send_mail(self, subject_template_name, email_template_name, context, from_email, to_email, html_email_template_name = ...):
+        return super().send_mail(subject_template_name, email_template_name, context, from_email, to_email, html_email_template_name)
+        
+
+class PasswordResetConfirmForm(forms.Form):
+    new_password1 =forms.CharField(
+        max_length=150,  
+        widget=forms.PasswordInput(attrs={"class":"form-control"})
+    )
+    new_password2 =forms.CharField(
+        max_length=150,
+        widget=forms.PasswordInput(attrs={"class":"form-control"})
+    )
+    def __init__(self, user, *args, **kwargs):
+        self.user = user
+        super().__init__(*args, **kwargs)
+        
+    
+    def clean_new_password1(self, *args, **kwargs):
+        new_password1 = self.cleaned_data.get('new_password1')
+        new_password2 = self.data.get('new_password2')
+        
+        
+        if new_password1 != new_password2:
+            raise forms.ValidationError('Password do not match')
+        #1. password length check   
+        if new_password1 and len(new_password1) < 8:
+            raise forms.ValidationError("Password must be at least 8 characters long")
+        #2.password must contain at lest one special character
+        if new_password1 and not re.search(r"[!@#$%^&*(),.?\":{}|<>]", new_password1):
+            raise forms.ValidationError("Password must contain at least one special character (!@#$%^&*)")
+        
+        return new_password1
+    
+    def save(self, commit=True, *args, **kwargs):
+        self.user.set_password(self.cleaned_data.get('new_password1'))
+        
+        if commit:
+            self.user.save()
+        return self.user

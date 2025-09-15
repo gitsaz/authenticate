@@ -6,12 +6,17 @@ from django.views.decorators.cache import never_cache
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse_lazy
-
+from django.contrib.auth.views import(
+    PasswordResetView,
+    PasswordResetConfirmView
+)
 from .forms import(
     LoginForm,
     UserRegistrationForm,
     MessageForm,
-    ChangePasswordForm
+    ChangePasswordForm,
+    ResetPasswordForm,
+    PasswordResetConfirmForm
 )
 from .minixs import(
     LogoutRequiredMinix
@@ -93,7 +98,7 @@ class ChangePassword(LoginRequiredMixin, generic.FormView):
     
     def get_form_kwargs(self):
         context = super().get_form_kwargs()
-        context['user'] = self.request.user
+        context['user'] = self.request.user #current password check korar jonno
         return context
     
     def form_valid(self, form):
@@ -101,4 +106,20 @@ class ChangePassword(LoginRequiredMixin, generic.FormView):
         user.set_password(form.cleaned_data.get('new_password1'))
         user.save()
         messages.success(self.request, 'Password Change Successfully')
+        return super().form_valid(form)
+    
+ 
+@method_decorator(never_cache, name='dispatch')   
+class PasswordReset(PasswordResetView):
+    template_name = "account/password_reset.html"
+    form_class = ResetPasswordForm
+    
+    
+class PasswordResetConfirm(PasswordResetConfirmView):
+    template_name = "account/password_reset_confirm.html"
+    form_class = PasswordResetConfirmForm
+    success_url = reverse_lazy('login')
+    
+    def form_valid(self, form):
+        messages.success(self.request, "Password REset Successful !")
         return super().form_valid(form)
